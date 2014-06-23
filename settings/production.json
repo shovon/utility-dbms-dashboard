@@ -1,0 +1,5 @@
+{
+  "dashboard": {
+    "dbms": "http://localhost:4406"
+  }
+}
