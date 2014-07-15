@@ -1,5 +1,3 @@
 {
-  "dashboard": {
-    "dbms": "http://localhost:4406"
-  }
+  "port": 4405
 }

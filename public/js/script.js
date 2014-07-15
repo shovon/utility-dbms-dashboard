@@ -137,6 +137,7 @@ function login(callback) {
 
   var $dialog = $('#login-dialog');
   var $form = $dialog.find('.form');
+  var $host     = $form.find('.host');
   var $username = $form.find('.username');
   var $password = $form.find('.password');
   var dbmsclient = null;
@@ -144,7 +145,7 @@ function login(callback) {
   var loggedIn = false;
 
   function logIn() {
-    dbmsclient = new DBMSClient($username.val(), $password.val(), window.dbms);
+    dbmsclient = new DBMSClient($username.val(), $password.val(), $host.val());
     dbmsclient.login(function (err) {
       if (!err) {
         loggedIn = true;

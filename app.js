@@ -8,9 +8,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('jade', require('jade').__express);
 
 app.get('/', function (req, res) {
-  res.render('index.jade', {
-    dbms: settings.get('dashboard:dbms') || 'http://localhost:4406'
-  });
+  res.render('index.jade');
 });
 
 app.listen(settings.get('port') || 4407, function () {
