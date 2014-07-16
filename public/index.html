@@ -66,19 +66,29 @@
         </div>
 
         <div class='col-md-4 full-height'>
-          <div class=''>
+
+          <div class='query-bar text-right'>
             <button ng-click="runQuery()" ng-class='{"disabled": !series || !canQuery()}' class='btn btn-primary'>Query</button>
 
-            <div ng-if='series' class='input-group'>
-              <select ng-model='query.series' ng-options='singleSeries for singleSeries in series'></select>
-            </div>
+          </div>
 
-            <div ng-if='hasSeries()' class='input-group'>
-              <label>From</label>
-              <input type='text' ng-model='query.from'>
-            </div>
+          <div class='query-form'>
+            <form>
+
+              <div ng-if='series' class='form-group'>
+                <label>Series</label>
+                <select class="form-control" ng-model='query.series' ng-options='singleSeries for singleSeries in series'></select>
+              </div>
+
+              <div ng-if='hasSeries()' class='form-group'>
+                <label>Start</label>
+                <input class="form-control" type='text' ng-model='query.from'>
+              </div>
+
+            </form>
 
           </div>
+
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 window.drawGraph = drawGraph;
 function drawGraph(data) {
+  console.log(data.length);
   data = [{
     values: data.map(function (datum) {
       return {
@@ -30,6 +31,8 @@ function drawGraph(data) {
       .transition().duration(500)
       .call(chart)
       ;
+
+    nv.utils.windowResize(chart.update);
 
     return chart;
   });

@@ -8,3 +8,6 @@ body, html {
 
 #graph svg {
   height: 400px; }
+
+.query-bar, .query-form {
+  padding: 10px; }

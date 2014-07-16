@@ -85,7 +85,7 @@ function DashboardController($scope) {
         return $.bootstrapGrowl('Error logging in.', {
           ele: 'body',
           type: 'danger',
-          type: 'center',
+          align: 'center',
           delay: 4000
         });
       }
@@ -98,11 +98,11 @@ function DashboardController($scope) {
 
   $scope.hasSeries = function () {
     return !!$scope.query.series;
-  }
+  };
 
   $scope.canQuery = function () {
     return !isNaN(DBMSClient.handleDate($scope.query.from));
-  }
+  };
 
   $scope.runQuery = function () {
     $scope.dbmsclient.getData($scope.query.series, {
@@ -110,7 +110,7 @@ function DashboardController($scope) {
     }, function (err, data) {
       drawGraph(data);
     });
-  }
+  };
 
 }
 
