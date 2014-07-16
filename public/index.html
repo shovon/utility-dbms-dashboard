@@ -1,0 +1,86 @@
+<!doctype html>
+
+<html lang='en' ng-app>
+  <head>
+    <meta charset='utf-8'>
+    <title>Database Management System Dasbhoard</title>
+    <link rel='stylesheet' href='./bootstrap/css/bootstrap.css'>
+    <link rel='stylesheet' href='./css/nv.d3.css'>
+    <link rel='stylesheet' href='./css/style.css'>
+
+    <script src='./js/jquery-2.1.1.js'></script>
+    <script src='./js/angular.min.js'></script>
+    <script src='./bootstrap/js/bootstrap.js'></script>
+    <script src='./js/jquery.bootstrap-growl.js'></script>
+    <script src='./js/d3.js'></script>
+    <script src='./js/nv.d3.js'></script>
+    <script src='./js/graph.js'></script>
+    <script src='./js/async.js'></script>
+    <script src='./js/dbmsclient/dbmsclient.js'></script>
+    <script src='./js/script.js'></script>
+  </head>
+
+  <body>
+
+    <div id='login-dialog' class='modal fade' tabindex='-1' role='dialog' aria-labelledby='login-dialog' aria-hidden='true'>
+
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h4 class='modal-title'>Please Log In</h4>
+          </div>
+
+          <div class='modal-body'>
+            <form class='form'>
+
+              <div class='form-group'>
+                <label for='host'>Host</label>
+                <input type='text' class='form-control host'>
+              </div>
+
+              <div class='form-group'>
+                <label for='username'>Username</label>
+                <input type='text' class='form-control username'>
+              </div>
+
+              <div class='form-group'>
+                <label for='password'>Password</label>
+                <input type='text' class='form-control password'>
+              </div>
+
+            </form>
+          </div>
+
+          <div class='modal-footer'>
+            <button class='btn btn-primary log-in' type='button' data-dismiss='modal'>Log In</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div ng-controller='DashboardController' class='container-fluid.full-height'>
+      <div class='row full-height'>
+        <div class='col-md-8 full-height'>
+          <div id='graph'></div>
+        </div>
+
+        <div class='col-md-4 full-height'>
+          <div class=''>
+            <button ng-click="runQuery()" ng-class='{"disabled": !series || !canQuery()}' class='btn btn-primary'>Query</button>
+
+            <div ng-if='series' class='input-group'>
+              <select ng-model='query.series' ng-options='singleSeries for singleSeries in series'></select>
+            </div>
+
+            <div ng-if='hasSeries()' class='input-group'>
+              <label>From</label>
+              <input type='text' ng-model='query.from'>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -29,9 +29,14 @@
     });
   };
 
+  function isShortcode(str) {
+    return /^\d+((m|h|d|w|y)o?)/.test(str);
+  }
+
   // TODO: there are a lot of repetitions going on, regarding log-in.
 
   function toDate(str, date) {
+
     date = date || new Date();
     date = new Date(date);
 
@@ -82,10 +87,21 @@
     }
 
     if (datestrings.length) {
-      return toDate(datestrings.join(' '), date);
+      var joined = datestrings.join(' ');
+      if (isShortcode(joined)) {
+        return toDate(joined, date);
+      }
+      return date;
     }
 
     return date;
+  }
+
+  DBMSClient.handleDate = function (str) {
+    if (isShortcode(str)) {
+      return toDate(str);
+    }
+    return new Date(str);
   }
 
   DBMSClient.prototype.getData = function (series, options, callback) {
@@ -107,24 +123,8 @@
 
       opts.session = self.session;
 
-      function isShortcodeDate(str) {
-        return /^\d+((m|h|d|w|y)o?)?/.test(str);
-      }
-
       if (opts.from) {
-        if (isShortcodeDate(opts.from)) {
-          opts.from = toDate(opts.from);
-        } else {
-          opts.from = new Date(opts.from);
-        }
-      }
-
-      if (opts.to) {
-        if (isShortcodeDate(opts.to)) {
-          opts.to = toDate(opts.to);
-        } else {
-          opts.to = new Date(opts.to);
-        }
+        opts.from = DBMSClient.handleDate(opts.from);
       }
 
       if (opts.devices) {
